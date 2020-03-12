@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: 18px Helvetica, Arial;
+    margin: 5vw;
+}
+
+.chat-box {
+    background-color: #fff;
+    width: 90vw;
+    height: 50vh;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    border-radius: 5px;
+}
+
+.chat-box__item {
+    padding: 5px;
+}
+
+.chat-box__item--message {
+    background-color: #133185;
+}
+
+.chat-box__item--user {
+    background-color: #D1401D;
+}
+
+.chat-box__item h1 {
+    color: #fff;
+    text-align: center;
+}
+
+form {
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+}
+
+form input {
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    margin-right: .5%;
+    margin-bottom: 10px;
+    border: 1px solid #133185;
+}
+
+form button {
+    width: 100%;
+    background: rgb(8, 62, 209);
+    border: none;
+    padding: 10px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.form__item {
+    width: 100%;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#messages li {
+    padding: 5px 10px;
+    background: #D1401D;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+#messages li:nth-child(odd) {
+    background: #eee;
+    color: #222;
+}
+
+#user-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#user-list li {
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 3px;
+    margin-top: 3px;
+}
+
+#user-list li:nth-child(odd) {
+    background: #133185;
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}

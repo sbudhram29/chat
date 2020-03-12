@@ -1,0 +1,17 @@
+{
+    "name": "chatbox",
+    "version": "0.0.0",
+    "description": "chat app take home task",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongodb": "^3.5.4",
+        "socket.io": "^2.3.0",
+        "uuid-js": "^0.7.5"
+    }
+}

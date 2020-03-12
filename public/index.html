@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>SSB | Chat Box</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="chat-box">
+        <div class="chat-box__item chat-box__item--message">
+            <h1>MESSAGES</h1>
+            <hr>
+            <ul id="messages">
+            </ul>
+        </div>
+        <div class="chat-box__item chat-box__item--user">
+            <h1>USERS</h1>
+            <hr>
+            <ul id="user-list"></ul>
+        </div>
+    </div>
+    <form action="" class="form" id="chat">
+        <div class="form__item">
+            <label for="name" class="visuallyhidden">Name</label>
+            <input id="name" autocomplete="off" placeholder="name" />
+        </div>
+        <div class="form__item hidden">
+            <label for="m" class="visuallyhidden">Message</label>
+            <input id="m" autocomplete="off" placeholder="message" />
+        </div>
+        <div class="form__item hidden">
+            <button>Send</button>
+        </div>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    </script>
+</body>
+
+
+</html>
