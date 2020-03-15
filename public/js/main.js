@@ -16,10 +16,15 @@ $( document ).ready(function () {
         let name = $('#name').val();
 
         if (name.length > 0 && pattern.test(name)) {
-            socket.emit('add user', {
+
+            socket.emit('login', {
                 name: name
             });
-            
+
+            socket.emit('user enter leave message', {
+                name: $('#name').val(),
+                message: ' enter the chat.'
+            });
             $('#name').css('display', 'none');
             $('#chat').removeClass('hidden');
             $('#chat-username').addClass('hidden');
@@ -100,8 +105,10 @@ $( document ).ready(function () {
         $('#chat').addClass('hidden');
         $('#chat-username').removeClass('hidden');
         $('.chat-box').addClass('hidden');
-        socket.emit('logout', {});
-        socket.emit('enter leave', {
+        socket.emit('logout', {
+        });
+        
+        socket.emit('user enter leave message', {
             name: $('#name').val(),
             message: ' left the chat.'
         });
@@ -110,26 +117,45 @@ $( document ).ready(function () {
     /*
     * Socket IO 
     */
-    socket.on('is typing', function (data) {
-        if (data.name && data.message) {
-            $('#messages').append($(`<li id="${data.name.trim()}_is_typing">`).text(`${data.name} - ${data.message}`));
+    socket.on('is typing', function ({name, message}) {
+        if (name && message) {
+            $('#messages').append($(`<li id="${name.trim().replace(' ', '_')}_is_typing">`).text(`${name} - ${message}`));
         }
     });
 
-    socket.on('add user', function (data) {
-        if (data.name) {
-            $('#user-list').append($(`<li id="${data.id}">`).text(`${data.name}`));
+    socket.on('add user', function ({name, id}) {
+        if (name) {
+            $('#user-list').append($(`<li id="${id}">`).text(`${name}`));
         }
     });
 
-    socket.on('update user list', function (data) {
+    socket.on('clear', function ({id}) {
+        $(`#${id}`).empty();
+    });
+
+    socket.on('load users', function ({name, id}) {
+        if (name) {
+            $('#user-list').append($(`<li id="${id}">`).text(`${name}`));
+        }
+    });
+
+    socket.on('load messages', function ({name, message}) {
+        if (name && message) {
+            $('#messages').append($('<li>').text(`${name} - ${message}`));
+        }
+    });
+
+    socket.on('delete user', function (data) {
         $(`#${data.id}`).remove();
     });
 
-    socket.on('chat message', function (data) {
-        if (data.name && data.message) {
-            $(`#${data.name.trim()}_is_typing`).remove();
-            $('#messages').append($('<li>').text(`${data.name} - ${data.message}`));
+    socket.on('chat message', function ({name, message}) {
+
+        if (name && message) {
+            if(name.trim().length > 0 ){
+                $(`#${name.trim().replace(' ', '_')}_is_typing`).remove();
+            }
+            $('#messages').append($('<li>').text(`${name} - ${message}`));
         }  
         scrollToBottom();
     });

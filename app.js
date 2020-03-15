@@ -19,7 +19,7 @@ const assert = require('assert');
 const url = 'mongodb://mskcc:mskcc1234@ds217452.mlab.com:17452/heroku_v4mvnch9';
 
 // Database Name
-const dbName = 'chat-box';
+const dbName = 'heroku_v4mvnch9';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function (err, client) {
@@ -30,28 +30,13 @@ MongoClient.connect(url, function (err, client) {
     var userCollection = db.collection('users');
 
     io.on('connection', function (socket) {
-        userCollection.find({}).limit(20).toArray().then(res => {
-
-            res.map(user => {
-                socket.emit('add user', user)
-            })
-        }
-        );
-        messageCollection.find({}).limit(100).toArray().then(res => {
-
-            res.map(message => {
-                socket.emit('chat message', message)
-            })
-        }
-        );
 
         socket.on('disconnect', function () {
 
             if (socket.currentUser) {
 
-                socket.broadcast.emit('update user list', socket.currentUser);
                 userCollection.deleteOne(socket.currentUser);
-
+                socket.broadcast.emit('delete user', socket.currentUser);
                 socket.broadcast.emit('chat message', {
                     name: socket.currentUser.name,
                     message: ' left the chat.'
@@ -60,17 +45,52 @@ MongoClient.connect(url, function (err, client) {
             }
         });
 
+        /*
+        * Login / Log out
+        */
+        socket.on('login', function (data) {
+            let id = uuid.create().toString();
+            let user = { id: id, name: data.name }
+
+            socket.currentUser = user;
+            userCollection.insertOne(user);
+
+            socket.emit('clear', {id: 'user-list'})
+
+            userCollection.find({}).limit(20).toArray().then(res => {
+
+                res.map(user => {
+                    socket.emit('load users', user)
+                })
+            }
+            );
+
+            socket.emit('clear', {id: 'messages'})
+            messageCollection.find({}).limit(100).toArray().then(res => {
+
+                res.map(message => {
+                    socket.emit('load messages', message)
+                })
+            }
+            );
+
+            socket.broadcast.emit('add user', user);
+
+        });
         socket.on('logout', function (data) {
             userCollection.deleteOne(socket.currentUser);
-            io.emit('update user list', socket.currentUser);
+            io.emit('delete user', socket.currentUser);
         });
 
+        /*
+        * Messages
+        */
         socket.on('chat message', function (data) {
             messageCollection.insertOne(data);
             socket.broadcast.emit('chat message', data);
         });
 
-        socket.on('enter leave', function (data) {
+        socket.on('user enter leave message', function (data) {
             socket.broadcast.emit('chat message', data);
         });
 
@@ -78,27 +98,10 @@ MongoClient.connect(url, function (err, client) {
             socket.broadcast.emit('is typing', data);
         });
 
-        socket.on('add user', function (data) {
-            let id = uuid.create().toString();
-            let user = { id: id, name: data.name }
-
-            socket.currentUser = user;
-
-            socket.broadcast.emit('chat message', {
-                name: socket.currentUser.name,
-                message: ' has entered the chat.'
-            });
-
-            userCollection.insertOne(user);
-
-            io.emit('add user', user);
-        });
     });
 
-
-
     http.listen(port, function () {
-        console.log('listening on localhost:3000');
+        console.log(`listening on localhost:${port}`);
     });
 
 });
