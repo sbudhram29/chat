@@ -7,37 +7,53 @@
 </head>
 
 <body>
+   <div class="chat">
+    <h1>CHAT BOX</h1>
     <div class="chat-box">
-        <div class="chat-box__item chat-box__item--message">
+        <div class="chat-box__item">
             <h1>MESSAGES</h1>
-            <hr>
+        </div>
+        <div class="chat-box__item">
+            <h1>USERS</h1>
+        </div>
+        <div class="chat-box__item chat-box__item--message">
             <ul id="messages">
             </ul>
         </div>
         <div class="chat-box__item chat-box__item--user">
-            <h1>USERS</h1>
-            <hr>
             <ul id="user-list"></ul>
         </div>
     </div>
-    <form action="" class="form" id="chat">
+    <div class="chat-form">
+    <form action="" class="form" id="chat-username">
         <div class="form__item">
+            <h1>Enter your username.</h1>
             <label for="name" class="visuallyhidden">Name</label>
-            <input id="name" autocomplete="off" placeholder="name" />
+            <input id="name" autocomplete="off" placeholder="name" type="text" required pattern="[a-zA-Z0-9\s]+"
+            title="Only Alphnumeric characters"
+            />
         </div>
-        <div class="form__item hidden">
-            <label for="m" class="visuallyhidden">Message</label>
-            <input id="m" autocomplete="off" placeholder="message" />
-        </div>
-        <div class="form__item hidden">
-            <button>Send</button>
+        <div class="form__item">
+            <button id="login">Login</button>
         </div>
     </form>
+    <form action="" class="form" id="chat">
+        <div class="form__item">
+            <label for="m" class="visuallyhidden">Message</label>
+            <input id="m" autocomplete="off" type="text" placeholder="message" />
+        </div>
+        <div class="form__item">
+            <button id="send">Send</button>
+        </div>
+        <div class="form__item">
+            <button id="logout">Log Out</button>
+        </div>
+    </form>
+   </div> 
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="js/main.js"></script>
-    <script>
-    </script>
 </body>
 
 

@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$white-text: #fff;
+$primary-color: #0868c2;
+$secondary-color: #4da4fa;
+
+body {
+    font: 18px Helvetica, Arial;
+    margin: 5vw;
+}
+
+.chat {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+
+    h1 {
+        color: $primary-color;
+    }
+}
+
+.chat-box {
+    background-color: #fff;
+    font-size: 1.3rem;
+    max-width: 900px;
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    border-radius: 5px;
+
+    h1 {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: $white-text;
+        text-align: center;
+    }
+    &__item {
+        padding: 5px;
+        background-color: $primary-color;
+        border: 1px solid #fff;
+        &--message { 
+            background-color: $primary-color;
+            overflow: auto;
+            height: 50vh;
+        }
+        &--user { 
+            background-color: $secondary-color;
+            overflow: auto;
+            height: 50vh;
+        }
+    }
+}
+
+.chat-form {
+    background-color: #fff;
+    font-size: 1.3rem;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1.3rem;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    padding: 20px 0px;
+    bottom: 0;
+    width: 100%;
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        color: $primary-color;
+    }
+
+    & input {
+        border: 0;
+        padding: 10px;
+        width: 100%;
+        margin-right: .5%;
+        margin-bottom: 10px;
+        border: 1px solid $primary-color;
+        font-size: 1.3rem;
+        border-radius: 3px;
+    }
+
+    & button {
+        width: 100%;
+        border: none;
+        background: $primary-color;
+        padding: 10px;
+        color: #fff;
+        font-size: 1.3rem;
+        border-radius: 3px;
+    }
+    & #send {
+        background: $primary-color;
+    }
+
+    & #logout {
+        background: $secondary-color;
+    }
+    &__item {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    &__item:nth-child(1) {
+        border: 1px solid $primary-color;
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+    }
+}
+
+
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & li {
+        padding: 5px 10px;
+        background: $secondary-color;
+        border-radius: 5px;
+        margin-top: 5px;
+        color: #fff;
+    }
+
+    & li:nth-child(odd) {
+        background: #eee;
+        color: #222;
+    }
+}
+
+
+#user-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & li {
+        padding: 5px 10px;
+        background-color: #eee;
+        border-radius: 3px;
+        margin-top: 3px;
+    }
+
+    & li:nth-child(odd) {
+        background: $primary-color;
+        color: #fff;
+    }
+}
+
+/*
+* Visibility
+*/
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.hidden {
+    display: none;
+}

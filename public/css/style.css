@@ -1,120 +1,162 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font: 18px Helvetica, Arial;
-    margin: 5vw;
+  font: 18px Helvetica, Arial;
+  margin: 5vw;
+}
+
+.chat {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.chat h1 {
+  color: #0868c2;
 }
 
 .chat-box {
-    background-color: #fff;
-    width: 90vw;
-    height: 50vh;
-    overflow: auto;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    border-radius: 5px;
+  background-color: #fff;
+  font-size: 1.3rem;
+  max-width: 900px;
+  width: 90vw;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  border-radius: 5px;
 }
-
+.chat-box h1 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+}
 .chat-box__item {
-    padding: 5px;
+  padding: 5px;
+  background-color: #0868c2;
+  border: 1px solid #fff;
 }
-
 .chat-box__item--message {
-    background-color: #133185;
+  background-color: #0868c2;
+  overflow: auto;
+  height: 50vh;
 }
-
 .chat-box__item--user {
-    background-color: #D1401D;
+  background-color: #4da4fa;
+  overflow: auto;
+  height: 50vh;
 }
 
-.chat-box__item h1 {
-    color: #fff;
-    text-align: center;
-}
-
-form {
-    padding: 20px;
-    bottom: 0;
-    width: 100%;
-}
-
-form input {
-    border: 0;
-    padding: 10px;
-    width: 100%;
-    margin-right: .5%;
-    margin-bottom: 10px;
-    border: 1px solid #133185;
-}
-
-form button {
-    width: 100%;
-    background: rgb(8, 62, 209);
-    border: none;
-    padding: 10px;
+.chat-form {
+  background-color: #fff;
+  font-size: 1.3rem;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1.3rem;
 }
 
 .form {
-    display: grid;
-    grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  padding: 20px 0px;
+  bottom: 0;
+  width: 100%;
 }
-
+.form h1 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: #0868c2;
+}
+.form input {
+  border: 0;
+  padding: 10px;
+  width: 100%;
+  margin-right: 0.5%;
+  margin-bottom: 10px;
+  border: 1px solid #0868c2;
+  font-size: 1.3rem;
+  border-radius: 3px;
+}
+.form button {
+  width: 100%;
+  border: none;
+  background: #0868c2;
+  padding: 10px;
+  color: #fff;
+  font-size: 1.3rem;
+  border-radius: 3px;
+}
+.form #send {
+  background: #0868c2;
+}
+.form #logout {
+  background: #4da4fa;
+}
 .form__item {
-    width: 100%;
+  width: 100%;
+  margin-bottom: 5px;
 }
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+.form__item:nth-child(1) {
+  border: 1px solid #0868c2;
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
 }
 
 #messages {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
-
 #messages li {
-    padding: 5px 10px;
-    background: #D1401D;
-    border-radius: 5px;
-    margin-top: 5px;
-    color: #fff;
+  padding: 5px 10px;
+  background: #4da4fa;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: #fff;
 }
-
 #messages li:nth-child(odd) {
-    background: #eee;
-    color: #222;
+  background: #eee;
+  color: #222;
 }
 
 #user-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
-
 #user-list li {
-    padding: 5px 10px;
-    background-color: #eee;
-    border-radius: 3px;
-    margin-top: 3px;
+  padding: 5px 10px;
+  background-color: #eee;
+  border-radius: 3px;
+  margin-top: 3px;
+}
+#user-list li:nth-child(odd) {
+  background: #0868c2;
+  color: #fff;
 }
 
-#user-list li:nth-child(odd) {
-    background: #133185;
-    color: #fff;
+/*
+* Visibility
+*/
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
+
+/*# sourceMappingURL=style.css.map */

@@ -27,7 +27,7 @@ MongoClient.connect(url, function (err, client) {
     var userCollection = db.collection('users');
 
     io.on('connection', function (socket) {
-        userCollection.find({}).limit(100).toArray().then(res => {
+        userCollection.find({}).limit(20).toArray().then(res => {
 
             res.map(user => {
                 socket.emit('add user', user)
@@ -57,8 +57,17 @@ MongoClient.connect(url, function (err, client) {
             }
         });
 
+        socket.on('logout', function (data) {
+            userCollection.deleteOne(socket.currentUser);
+            io.emit('update user list', socket.currentUser);
+        });
+
         socket.on('chat message', function (data) {
             messageCollection.insertOne(data);
+            socket.broadcast.emit('chat message', data);
+        });
+
+        socket.on('enter leave', function (data) {
             socket.broadcast.emit('chat message', data);
         });
 
