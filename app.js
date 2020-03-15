@@ -8,12 +8,15 @@ var uuid = require('uuid-js');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const port = process.env.PORT || 3000;
+
 
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
+// const url = 'mongodb://localhost:27017';
+const url = 'mongodb://mskcc:mskcc1234@ds217452.mlab.com:17452/heroku_v4mvnch9';
 
 // Database Name
 const dbName = 'chat-box';
@@ -94,7 +97,7 @@ MongoClient.connect(url, function (err, client) {
 
 
 
-    http.listen(3000, function () {
+    http.listen(port, function () {
         console.log('listening on localhost:3000');
     });
 
