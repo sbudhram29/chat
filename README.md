@@ -6,8 +6,14 @@ This is a bare chat app, build using Socket.io and MongoDB
 
 have MongoDb running on your dev environment with port 27017
 
-## Launch app
+## Launch app w/ MongoDB
 
  - run npm install
- - nodemon app.js || node app.js
+ - node app.js
+ - vist localhost:3000
+
+## Launch app w/o Any database
+
+ - run npm install
+ - node basic.js
  - vist localhost:3000
