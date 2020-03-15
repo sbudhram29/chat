@@ -25,7 +25,6 @@ $( document ).ready(function () {
                 name: $('#name').val(),
                 message: ' enter the chat.'
             });
-            $('#name').css('display', 'none');
             $('#chat').removeClass('hidden');
             $('#chat-username').addClass('hidden');
             $('.chat-box').removeClass('hidden');
@@ -39,10 +38,6 @@ $( document ).ready(function () {
         messageDiv =  document.querySelector(".chat-box__item--message");
         messageDiv.scrollTop = messageDiv.scrollHeight;
     }
-
-    $('#chat').addClass('hidden');
-        
-    $('.chat-box').addClass('hidden');
 
     /*
     * chat
@@ -85,15 +80,6 @@ $( document ).ready(function () {
     * Username
     */
 
-    $('#name').on('keyup keypress', function (e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) {
-            e.preventDefault();
-            nameEnter();
-            return false;
-        }
-    });
-
     document.querySelector("#login").addEventListener('click', (e) => {
         e.preventDefault(); 
         nameEnter();
@@ -101,7 +87,6 @@ $( document ).ready(function () {
 
     document.querySelector("#logout").addEventListener('click', (e) => {
         e.preventDefault(); 
-        $('#name').css('display', 'block');
         $('#chat').addClass('hidden');
         $('#chat-username').removeClass('hidden');
         $('.chat-box').addClass('hidden');

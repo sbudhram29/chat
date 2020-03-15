@@ -9,7 +9,7 @@
 <body>
    <div class="chat">
     <h1>CHAT BOX</h1>
-    <div class="chat-box">
+    <div class="chat-box hidden">
         <div class="chat-box__item">
             <h1>MESSAGES</h1>
         </div>
@@ -37,7 +37,7 @@
             <button id="login">Login</button>
         </div>
     </form>
-    <form action="" class="form" id="chat">
+    <form action="" class="form hidden" id="chat">
         <div class="form__item">
             <label for="m" class="visuallyhidden">Message</label>
             <input id="m" autocomplete="off" type="text" placeholder="message" />
@@ -52,7 +52,10 @@
    </div> 
     </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
 

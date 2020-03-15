@@ -53,28 +53,29 @@ MongoClient.connect(url, function (err, client) {
             let user = { id: id, name: data.name }
 
             socket.currentUser = user;
-            userCollection.insertOne(user);
+            userCollection.insertOne(user).then(()=> {
+                socket.emit('clear', {id: 'user-list'})
+                socket.emit('clear', {id: 'messages'})
 
-            socket.emit('clear', {id: 'user-list'})
+                userCollection.find({}).limit(20).toArray().then(res => {
 
-            userCollection.find({}).limit(20).toArray().then(res => {
+                    res.map(user => {
+                        socket.emit('load users', user)
+                    })
+                }
+                );
 
-                res.map(user => {
-                    socket.emit('load users', user)
-                })
-            }
-            );
+                messageCollection.find({}).limit(100).toArray().then(res => {
 
-            socket.emit('clear', {id: 'messages'})
-            messageCollection.find({}).limit(100).toArray().then(res => {
+                    res.map(message => {
+                        socket.emit('load messages', message)
+                    })
+                }
+                );
 
-                res.map(message => {
-                    socket.emit('load messages', message)
-                })
-            }
-            );
+                socket.broadcast.emit('add user', user);
 
-            socket.broadcast.emit('add user', user);
+            })
 
         });
         socket.on('logout', function (data) {
